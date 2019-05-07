@@ -1,22 +1,39 @@
-welcome: "Welcome to Calculator! Enter your name:"
-valid_name: "Make sure to enter a valid name."
-hi: 'Hi'
+en:
+  welcome: "Welcome to Calculator! Enter your name:"
+  valid_name: "Make sure to enter a valid name."
+  hi: 'Hi %{name}'
+  first_number: "What's the first number?"
+  invalid_number: "Hmm... that doesn't look like a valid number."
+  second_number: "What's the second number?"
+  operator_prompt: |
+    What operation would you like to perform
+    1) add
+    2) subtract
+    3) multiply
+    4) divide
+  choose_number: "Must choose 1, 2, 3, or 4"
+  calculating: 'the two numbers...'
+  result: "The result is"
+  another_calculation: "Do you want to perform another calculation? (Y to
+  calculate again)"
+  thank_you: "Thank you for using the calculator. Good bye!"
+es:
+  welcome: "Bienvenido a la calculadora! Entre su nombre:"
+  valid_name: "Asegúrese de entrar un nombre válido."
+  hi: "Hola"
+  first_number: "¿Cuál es el primer número?"
+  invalid_number: "Hmm ... no parece un número válido."
+  second_number: "¿Cuál es el segundo número?"
+  operator_prompt: |
+    ¿Qué operación te gustaría realizar?
+    1) añadir
+    2) restar
+    3) multiplicar
+    4) dividir
+  choose_number: "Debe elegir 1, 2, 3 o 4"
+  calculating: 'los dos números ...'
+  result: "El resultado es"
+  another_calculation: "¿Desea realizar otro cálculo? (Y para
+  calcular de nuevo)"
+  thank_you: "Gracias por usar la calculadora. ¡Adiós!"
 
-first_number: "What's the first number?"
-invalid_number: "Hmm... that doesn't look like a valid number."
-second_number: "What's the second number?"
-
-operator_prompt: |
-  What operation would you like to perform
-  1) add
-  2) subtract
-  3) multiply
-  4) divide
-
-choose_number: "Must choose 1, 2, 3, or 4"
-calculating: 'the two numbers...'
-result: "The result is"
-
-another_calculation: "Do you want to perform another calculation? (Y to
-calculate again)"
-thank_you: "Thank you for using the calculator. Good bye!"

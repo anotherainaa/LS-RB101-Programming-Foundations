@@ -1,5 +1,10 @@
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages.yml')
+# LANGUAGE = 'en'
+
+def messages(message, lang= 'en')
+  MESSAGES[lang][message]
+end
 
 def prompt(message)
   Kernel.puts("=> #{message}")
@@ -29,7 +34,7 @@ def operation_to_message(op)
   result
 end
 
-prompt(MESSAGES['welcome'])
+prompt(messages('welcome'))
 
 name = ''
 
@@ -37,40 +42,41 @@ loop do
   name = Kernel.gets().chomp()
 
   if name.empty?()
-    prompt(MESSAGES['valid_name'])
+    prompt('valid_name')
   else
     break
   end
 end
 
-prompt("#{MESSAGES['hi']} #{name}!")
+# p prompt('hi')
+puts(Kernel.format(messages('hi'), name: name))
 
 loop do # main loop
   number1 = ''
   loop do
-    prompt(MESSAGES['first_number'])
+    prompt(messages('first_number'))
     number1 = Kernel.gets().chomp()
 
     if number?(number1)
       break
     else
-      prompt(MESSAGES['invalid_number'])
+      prompt(messages('invalid_number'))
     end
   end
 
   number2 = ''
   loop do
-    prompt(MESSAGES['second_number'])
+    prompt(messages('second_number'))
     number2 = Kernel.gets().chomp()
 
     if number?(number2)
       break
     else
-      prompt(MESSAGES['invalid_number'])
+      prompt(messages('invalid_number'))
     end
   end
 
-  prompt(MESSAGES['operator_prompt'])
+  prompt(messages('operator_prompt'))
 
   operator = ''
   loop do
@@ -79,11 +85,11 @@ loop do # main loop
     if %w(1 2 3 4).include?(operator)
       break
     else
-      prompt(MESSAGES['choose_number'])
+      prompt(messages('choose_number'))
     end
   end
 
-  prompt("#{operation_to_message(operator)} #{MESSAGES['calculating']}")
+  prompt("#{operation_to_message(operator)} #{messages('calculating')}")
 
   result = case operator
            when '1'
@@ -96,11 +102,11 @@ loop do # main loop
              number1.to_f() / number2.to_f()
            end
 
-  prompt("#{MESSAGES['result']} #{result}")
+  prompt("#{messages('result')} #{result}")
 
-  prompt(MESSAGES['another_calculation'])
+  prompt(messages('another_calculation'))
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
 end
 
-prompt(MESSAGES['thank_you'])
+prompt(messages('thank_you'))
