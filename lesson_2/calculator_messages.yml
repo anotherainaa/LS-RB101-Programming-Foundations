@@ -1,7 +1,7 @@
 en:
   welcome: "Welcome to Calculator! Enter your name:"
   valid_name: "Make sure to enter a valid name."
-  hi: 'Hi %{name}'
+  hi: "Hi %{name}"
   first_number: "What's the first number?"
   invalid_number: "Hmm... that doesn't look like a valid number."
   second_number: "What's the second number?"
@@ -12,15 +12,15 @@ en:
     3) multiply
     4) divide
   choose_number: "Must choose 1, 2, 3, or 4"
-  calculating: 'the two numbers...'
-  result: "The result is"
+  calculating: ' the two numbers...'
+  result: "The result is %{result}"
   another_calculation: "Do you want to perform another calculation? (Y to
   calculate again)"
   thank_you: "Thank you for using the calculator. Good bye!"
 es:
   welcome: "Bienvenido a la calculadora! Entre su nombre:"
   valid_name: "Asegúrese de entrar un nombre válido."
-  hi: "Hola"
+  hi: "Hola %{name}"
   first_number: "¿Cuál es el primer número?"
   invalid_number: "Hmm ... no parece un número válido."
   second_number: "¿Cuál es el segundo número?"
@@ -36,4 +36,22 @@ es:
   another_calculation: "¿Desea realizar otro cálculo? (Y para
   calcular de nuevo)"
   thank_you: "Gracias por usar la calculadora. ¡Adiós!"
+ja:
+  welcome: "計算機へようこそ！名前をご記入下さい："
+  valid_name: "有効な名前をご記入下さい"
+  hi: "こんにちわ %{name}さん"
+  first_number: "1つ目の番号は何ですか？"
+  invalid_number: "有効な番号でなさそうですね。"
+  second_number: "2つ目の番号は何ですか？"
+  operator_prompt: |
+    実行したいオペレーターはどれですか？（数字を入力して下さい）
+    1) 足す
+    2) 引く
+    3) 掛け
+    4) 分ける
+  choose_number: "1, 2, 3 または 4を選択して下さい"
+  calculating: '結果を計算中...'
+  result: "結果は"
+  another_calculation: "新しい計算を行いますか？(Yと記入下さい)"
+  thank_you: "計算機を利用して頂き、ありがとうございます！さようなら！"
 
