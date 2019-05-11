@@ -32,7 +32,7 @@ es:
     4) dividir
   choose_number: "Debe elegir 1, 2, 3 o 4"
   calculating: 'los dos números ...'
-  result: "El resultado es"
+  result: "El resultado es %{result}"
   another_calculation: "¿Desea realizar otro cálculo? (Y para
   calcular de nuevo)"
   thank_you: "Gracias por usar la calculadora. ¡Adiós!"
@@ -51,7 +51,7 @@ ja:
     4) 分ける
   choose_number: "1, 2, 3 または 4を選択して下さい"
   calculating: '結果を計算中...'
-  result: "結果は"
+  result: "結果は %{result}"
   another_calculation: "新しい計算を行いますか？(Yと記入下さい)"
   thank_you: "計算機を利用して頂き、ありがとうございます！さようなら！"
 
