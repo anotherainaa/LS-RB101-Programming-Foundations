@@ -1,19 +1,21 @@
-def calculate_monthly_percentage(yearly_rate)
-  yearly_rate / 12
+def integer?(number)
+  number.to_i.to_s == number
 end
 
-def calculate_loan_months(duration_in_year)
-  duration_in_year * 12
+def float?(number)
+  number.to_f.to_s == number
 end
 
-def calculate_monthly_payment(loan_amount,
-                              monthly_interest_rate,
-                              duration_in_months)
-  p = loan_amount
-  j = monthly_interest_rate
-  n = duration_in_months
+def valid_loan?(amount)
+  integer?(amount) && amount.to_f > 0
+end
 
-  p * (j / (1 - (1 + j)**-n))
+def valid_apr?(apr)
+  integer?(apr) || float?(apr) && apr.to_f > 0
+end
+
+def valid_years?(years)
+  integer?(years) && years.to_i > 0
 end
 
 def prompt(message)
@@ -23,50 +25,48 @@ end
 prompt("Welcome to Mortgage calculator")
 
 loop do
-  loan_amount = ''
+  amount = ''
   loop do
     prompt("What is the total amount of loan in dollars? (i.e 10000)")
-    loan_amount = gets.chomp.to_i
-    if loan_amount <= 0
-      prompt("Please enter a valid number.")
-    else
+    amount = gets.chomp
+    if valid_loan?(amount)
       break
+    else
+      prompt("Please enter a valid postive number.")
     end
   end
 
   annual_percentage_rate = ''
   loop do
-    prompt("What is the Annual Percentage Rate? (i.e 7%)")
-    annual_percentage_rate = gets.chomp.to_f / 100
-    if annual_percentage_rate <= 0
-      prompt("Please enter a valid number")
-    else
+    prompt("What is the Annual Percentage Rate? (i.e 7 or 7.0 for 7%)")
+    annual_percentage_rate = gets.chomp
+    if valid_apr?(annual_percentage_rate)
       break
+    else
+      prompt("Please enter a valid postive number.")
     end
   end
 
-  loan_duration_years = ''
+  years = ''
   loop do
     prompt("What is the loan duration in years? (i.e 30)")
-    loan_duration_years = gets.chomp.to_i
-    if loan_duration_years < 0
-      prompt("Please enter a valid number")
-    else
+    years = gets.chomp
+    if valid_years?(years)
       break
+    else
+      prompt("Please enter a valid positive number.")
     end
   end
 
-  monthly_percentage_rate = calculate_monthly_percentage(annual_percentage_rate)
-  loan_duration_months = calculate_loan_months(loan_duration_years)
-  monthly_payment_rate = calculate_monthly_payment(loan_amount,
-                                                   monthly_percentage_rate,
-                                                   loan_duration_months)
+  monthly_interest_rate = annual_percentage_rate.to_f / 100 / 12
+  months = years.to_i * 12
+  monthly_payment_rate = amount.to_i * (monthly_interest_rate /
+                         (1 - (1 + monthly_interest_rate)**-months
+                         ))
 
-  monthly_payment_message = "Your monthly payment is "\
-                            "$#{monthly_payment_rate.round(2)} "\
-                            "to be paid in #{loan_duration_months} months"
+  # prompt("Your monthly payment is $#{monthly_payment_rate.round(2)}")
+  prompt("Your monthly payment is: $#{format('%02.2f', monthly_payment_rate)}")
 
-  prompt(monthly_payment_message)
 
   prompt("Do you want to calculate again? (Y to go again)")
   input = gets.chomp
