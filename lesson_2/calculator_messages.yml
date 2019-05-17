@@ -2,6 +2,7 @@ en:
   welcome: "Welcome to Calculator! Enter your name:"
   valid_name: "Make sure to enter a valid name."
   hi: "Hi %{name}"
+  enter_number: "Please enter a number:"
   first_number: "What's the first number?"
   invalid_number: "Hmm... that doesn't look like a valid number."
   second_number: "What's the second number?"
@@ -12,15 +13,18 @@ en:
     3) multiply
     4) divide
   choose_number: "Must choose 1, 2, 3, or 4"
+  choose_yes_no: "Must choose Yes(y) or No(n)"
   calculating: ' the two numbers...'
   result: "The result is %{result}"
   another_calculation: "Do you want to perform another calculation? (Y to
   calculate again)"
+  invalid_end_promt: "Please answer with Yes(y) or No(n)."
   thank_you: "Thank you for using the calculator. Good bye!"
 es:
   welcome: "Bienvenido a la calculadora! Entre su nombre:"
   valid_name: "Asegúrese de entrar un nombre válido."
   hi: "Hola %{name}"
+  enter_number: "¿Cuál es el número?"
   first_number: "¿Cuál es el primer número?"
   invalid_number: "Hmm ... no parece un número válido."
   second_number: "¿Cuál es el segundo número?"
@@ -40,6 +44,7 @@ ja:
   welcome: "計算機へようこそ！名前をご記入下さい："
   valid_name: "有効な名前をご記入下さい"
   hi: "こんにちわ %{name}さん"
+  enter_number: "番号を入力して下さい"
   first_number: "1つ目の番号は何ですか？"
   invalid_number: "有効な番号でなさそうですね。"
   second_number: "2つ目の番号は何ですか？"

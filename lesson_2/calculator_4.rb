@@ -57,35 +57,25 @@ def retrieve_user_name
       break
     end
   end
+  name
+end
+
+def display_name(name)
   Kernel.puts("=>#{Kernel.format(messages('hi'), name: name)}")
 end
 
 def retrieve_number
-  first_number = ''
+  number = ''
   loop do
-    prompt('first_number')
-    first_number = Kernel.gets().chomp()
-    if valid_number?(first_number)
+    prompt('enter_number')
+    number = Kernel.gets().chomp()
+    if valid_number?(number)
       break
     else
       prompt('invalid_number')
     end
   end
-  first_number
-end
-
-def retrieve_second_number
-  second_number = ''
-  loop do
-    prompt('second_number')
-    second_number = Kernel.gets().chomp()
-    if valid_number?(second_number)
-      break
-    else
-      prompt('invalid_number')
-    end
-  end
-  second_number
+  number
 end
 
 def retrieve_operation
@@ -103,15 +93,31 @@ def retrieve_operation
   operator
 end
 
+def add(first_number, second_number)
+  first_number.to_i + second_number.to_i
+end
+
+def subtract(first_number, second_number)
+  first_number.to_i - second_number.to_i
+end
+
+def multiply(first_number, second_number)
+  first_number.to_i * second_number.to_i
+end
+
+def divide(first_number, second_number)
+  first_number.to_i / second_number.to_f
+end
+
 def calculate_result(operator, first_number, second_number)
   result = if operator == '1'
-             first_number.to_i + second_number.to_i
+             add(first_number, second_number)
            elsif operator == '2'
-             first_number.to_i - second_number.to_i
+             subtract(first_number, second_number)
            elsif operator == '3'
-             first_number.to_i * second_number.to_i
+             multiply(first_number, second_number)
            else
-             first_number.to_i / second_number.to_f
+             divide(first_number, second_number)
            end
   result
 end
@@ -123,7 +129,17 @@ end
 
 def retrieve_play_again
   prompt('another_calculation')
-  Kernel.gets().chomp()
+  answer = ''
+
+  loop do
+    answer = Kernel.gets().chomp().downcase()
+    if %w(yes no y n).include?(answer)
+      break
+    else
+      prompt('choose_yes_no')
+    end
+  end
+  answer
 end
 
 def play_again?(answer)
@@ -136,12 +152,13 @@ end
 
 display_welcome
 
-retrieve_user_name
+name = retrieve_user_name
+
+display_name(name)
 
 loop do
   first_number = retrieve_number
-  second_number = retrieve_second_number
-  # refactor this to second number
+  second_number = retrieve_number
   operator = retrieve_operation
 
   result = calculate_result(operator, first_number, second_number)
@@ -152,6 +169,7 @@ loop do
 
   answer = retrieve_play_again
   break unless play_again?(answer)
+  system "clear"
 end
 
 display_goodbye
