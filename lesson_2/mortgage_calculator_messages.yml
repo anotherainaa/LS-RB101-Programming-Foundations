@@ -1,0 +1,8 @@
+welcome: "Welcome to Mortgage calculator"
+loan_amount: "What is the total amount of loan in dollars? (i.e 10000)"
+invalid_number: "Please enter a valid postive number."
+interest_rate: "What is the Interest Rate? (i.e 7 or 7.0)"
+loan_duration: "What is the loan duration in years? (i.e 30)"
+calculate_again: "Do you want to calculate again? Yes(Y) to go again or No(N) to quit"
+choose_yes_or_no: "Must choose Yes(Y) or No(N)"
+good_bye: "Thank you for using the Mortgage calculator. Goodbye"
