@@ -1,4 +1,3 @@
-require 'pry'
 VALID_CHOICES = %w(rock paper scissors lizard spock)
 WIN_CONDITION = {
   rock: %w(scissors lizard),
