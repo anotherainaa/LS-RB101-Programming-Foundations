@@ -19,7 +19,7 @@ def float?(number)
 end
 
 def valid_loan?(amount)
-  integer?(amount)&& amount.to_i > 0
+  integer?(amount) && amount.to_i > 0
 end
 
 def valid_interest_rate?(interest_rate)
