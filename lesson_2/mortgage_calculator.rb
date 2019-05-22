@@ -66,7 +66,7 @@ def retrieve_duration
     if valid_duration?(years)
       break
     else
-      prompt('invalid_number')
+      prompt('invalid_loan_duration')
     end
   end
   years
