@@ -1,5 +1,12 @@
 require 'pry'
 VALID_CHOICES = %w(rock paper scissors lizard spock)
+WIN_CONDITION = {
+  rock: %w(rock lizard),
+  paper: %w(rock spock),
+  scissors: %w(spock scissors),
+  spock: %w(scissors rock),
+  lizard: %w(paper spock)
+}
 
 def display_welcome
   prompt("Welcome to Rock Paper Scissors Spock Lizard")
@@ -11,16 +18,7 @@ def prompt(message)
 end
 
 def win?(first, second)
-  (first == 'rock' && second == 'scissors') ||
-    (first == 'rock' && second == 'lizard') ||
-    (first == 'paper' && second == 'rock') ||
-    (first == 'paper' && second == 'spock') ||
-    (first == 'scissors' && second == 'paper') ||
-    (first == 'scissors' && second == 'lizard') ||
-    (first == 'spock' && second == 'scissors') ||
-    (first == 'spock' && second == 'rock') ||
-    (first == 'lizard' && second == 'paper') ||
-    (first == 'lizard' && second == 'spock')
+  WIN_CONDITION[first.to_sym].include?(second)
 end
 
 def calculate_result(player, computer)
@@ -34,7 +32,7 @@ def calculate_result(player, computer)
 end
 
 def display_result(result)
-  prompt("#{result}")
+  prompt(result)
 end
 
 def compute_computer_choice
@@ -55,12 +53,13 @@ def abbreviate_valid_choice
 end
 
 def valid_choice?(input)
-  VALID_CHOICES.include?(input) || abbreviate_valid_choice.include?(input)
+  VALID_CHOICES.include?(input.downcase) ||
+    abbreviate_valid_choice.include?(input.downcase)
 end
 
 def convert_valid_choice(input)
   VALID_CHOICES.find do |choice|
-    choice.start_with?(input)
+    choice.start_with?(input.downcase)
   end
 end
 
@@ -102,10 +101,6 @@ def display_chosen_choices(player, computer)
   prompt("You chose: #{player}; Computer chose: #{computer}")
 end
 
-def display_score(player, computer)
-  prompt("Your score: #{player}; Computer score:#{computer}")
-end
-
 def calculate_score(result, score)
   if result == 'You won!'
     score[:player] += 1
@@ -134,7 +129,7 @@ end
 display_welcome
 
 loop do
-  score = { player: 0, computer: 0}
+  score = { player: 0, computer: 0 }
 
   loop do
     choice = retrieve_player_choice
