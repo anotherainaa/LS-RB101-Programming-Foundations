@@ -1,16 +1,17 @@
 require 'pry'
 VALID_CHOICES = %w(rock paper scissors lizard spock)
 WIN_CONDITION = {
-  rock: %w(rock lizard),
+  rock: %w(scissors lizard),
   paper: %w(rock spock),
-  scissors: %w(spock scissors),
+  scissors: %w(lizard paper),
   spock: %w(scissors rock),
   lizard: %w(paper spock)
 }
 
 def display_welcome
-  prompt("Welcome to Rock Paper Scissors Spock Lizard")
-  prompt("First one to win 5 games wins")
+  prompt("Welcome to Rock Paper Scissors Spock Lizard!")
+  prompt("First one to win 5 games wins.")
+  prompt("---------------------------------")
 end
 
 def prompt(message)
@@ -39,7 +40,7 @@ def compute_computer_choice
   VALID_CHOICES.sample()
 end
 
-def display_choices
+def display_valid_choices
   prompt("Choose one:")
   VALID_CHOICES.each do |choice|
     Kernel.puts("#{choice[0..1]} for #{choice}")
@@ -57,7 +58,7 @@ def valid_choice?(input)
     abbreviate_valid_choice.include?(input.downcase)
 end
 
-def convert_valid_choice(input)
+def convert_abbreviation_to_valid_choice(input)
   VALID_CHOICES.find do |choice|
     choice.start_with?(input.downcase)
   end
@@ -66,7 +67,7 @@ end
 def retrieve_player_choice
   choice = ''
   loop do
-    display_choices
+    display_valid_choices
     choice = Kernel.gets().chomp()
 
     if valid_choice?(choice)
@@ -75,7 +76,7 @@ def retrieve_player_choice
       prompt("That's not a valid choice.")
     end
   end
-  choice = convert_valid_choice(choice)
+  choice = convert_abbreviation_to_valid_choice(choice)
 end
 
 def retrieve_play_again
@@ -133,8 +134,8 @@ loop do
 
   loop do
     choice = retrieve_player_choice
+    system('clear') || system('cls')
     computer_choice = compute_computer_choice
-
     display_chosen_choices(choice, computer_choice)
     result = calculate_result(choice, computer_choice)
     display_result(result)
