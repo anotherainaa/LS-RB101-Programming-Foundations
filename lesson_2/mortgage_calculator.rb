@@ -134,7 +134,7 @@ loop do
   display_result(monthly_payment_rate)
   answer = retrieve_calculate_again
   break unless calculate_again?(answer)
-  system 'clear'
+  system('clear') || system('cls')
 end
 
 display_goodbye
