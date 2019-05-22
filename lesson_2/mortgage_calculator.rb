@@ -19,7 +19,7 @@ def float?(number)
 end
 
 def valid_loan?(amount)
-  (integer?(amount) || float?(amount)) && amount.to_f > 0
+  integer?(amount)&& amount.to_i > 0
 end
 
 def valid_interest_rate?(interest_rate)
@@ -38,7 +38,7 @@ def retrieve_loan_amount
     if valid_loan?(amount)
       break
     else
-      prompt('invalid_number')
+      prompt('invalid_loan_amount')
     end
   end
   amount
@@ -52,7 +52,7 @@ def retrieve_interest_rate
     if valid_interest_rate?(interest_rate)
       break
     else
-      prompt('invalid_number')
+      prompt('invalid_interest_rate')
     end
   end
   interest_rate
