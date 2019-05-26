@@ -48,7 +48,7 @@ def display_valid_choices
 end
 
 def valid_choice?(input)
-  WIN_CONDITION.keys.include?(input.downcase) ||
+  WIN_CONDITION.keys.include?(input.downcase.to_sym) ||
     WIN_CONDITION.any? { |_, hash| hash[:abbr] == input.downcase }
 end
 
