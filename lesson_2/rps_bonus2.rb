@@ -30,12 +30,6 @@ def calculate_result(player, computer)
   end
 end
 
-def display_result(player, computer)
-  result = calculate_result(player, computer)
-  prompt(result)
-  result
-end
-
 def compute_computer_choice
   WIN_CONDITION.keys.sample().to_s()
 end
@@ -104,7 +98,6 @@ def calculate_score(result, score)
   elsif result == 'Computer won!'
     score[:computer] += 1
   end
-  score
 end
 
 def display_score(result, score)
@@ -134,8 +127,8 @@ loop do
     system('clear') || system('cls')
     computer_choice = compute_computer_choice
     display_chosen_choices(choice, computer_choice)
-    result = display_result(choice, computer_choice)
-
+    result = calculate_result(choice, computer_choice)
+    prompt(result)
     display_score(result, score)
 
     break if game_ended?(score)
