@@ -32,20 +32,18 @@ require 'pry'
 #  - use .join with space to turn the array into a string.
 
 def change_me(string)
-  return "" if string == ""
   result = []
   words = string.split
   iterator = 0
   loop do
+    break if iterator == words.size
     word = words[iterator]
-    binding.pry
     if word.reverse == word
       result << word.upcase
     else
       result << word
     end
     iterator += 1
-    break if iterator == words.size
   end
   result.join(' ')
 end
