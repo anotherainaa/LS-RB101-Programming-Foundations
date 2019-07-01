@@ -16,3 +16,5 @@ munsters.each do |name, hash|
 end
 
 p total_age
+
+# Try to solve this problem again using Hash#each_value
