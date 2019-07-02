@@ -5,8 +5,10 @@ second: ['brown', 'fox'],
 
 hsh.each do |_, value|
   value.each do |element|
-    element.chars do |char|
+    element.chars.each do |char|
       puts char if %w(a e i o u).include?(char)
     end
   end
 end
+
+# Try again using Hash#values
