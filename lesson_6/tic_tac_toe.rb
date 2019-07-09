@@ -39,10 +39,19 @@ def empty_squares(board)
   board.keys.select { |num| board[num] == INITIAL_MARKER }
 end
 
+def joinor(array, delimiter1 = ', ', delimiter2 = 'or')
+  if array.size <= 2
+    array.join(' ' + delimiter2 + ' ')
+  else
+    array[-1] = "#{delimiter2} #{array[-1]}"
+    array.join(delimiter1)
+  end
+end
+
 def player_places_piece!(board)
   square = ''
   loop do
-    prompt "Choose a square (#{empty_squares(board).join(', ')})"
+    prompt "Choose a square (#{joinor(empty_squares(board))})"
     square = gets.chomp.to_i
 
     break if empty_squares(board).include?(square)
@@ -104,3 +113,6 @@ loop do
 end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
+
+
+
