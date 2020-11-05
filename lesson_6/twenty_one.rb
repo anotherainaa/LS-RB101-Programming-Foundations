@@ -1,18 +1,5 @@
 require 'pry'
 
-=begin
-1. Initialize deck
-2. Deal cards to player and dealer
-3. Player turn: hit or sta
-  - repeat until bust or stay
-4. If player bust, dealer wins 
-5. Dealer turn: hit or stay
-  - repeat until total >= 17
-6. If dealer bust, player wins
-7. Compare cards and declare winner 
-=end
-
-PLAYERS = ['dealer', 'player']
 SUITS = ['H', 'D', 'S', 'C']
 CARDS = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', 'Jack', 'Queen', 'King']
 
@@ -21,7 +8,7 @@ def prompt(msg)
 end
 
 def initialize_deck
-  cards = []
+  []
 end
 
 def deal_card(cards)
@@ -29,21 +16,20 @@ def deal_card(cards)
 end
 
 def calculate(cards)
-  values = cards.map {|card| card[1]}
-
+  values = cards.map { |card| card[1] }
   sum = 0
 
-  values.each do |value|
-    if values == "Ace"
-      sum += 11
+  sum += values.each do |value|
+    if value == "Ace"
+      11
     elsif value.to_i == 0
-      sum += 10
+      10
     else
-      sum += value.to_i
+      value.to_i
     end
   end
 
-  values.select { |value| value == "Ace"}.count.times do 
+  values.select { |value| value == "Ace" }.count.times do
     sum -= 10 if sum > 21
   end
 
@@ -52,7 +38,7 @@ end
 
 def busted?(cards)
   calculate(cards) > 21
-end  
+end
 
 def joinor(array)
   if array.size <= 2
@@ -64,7 +50,7 @@ def joinor(array)
 end
 
 def display_player(cards)
-  values = cards.map {|card| card[1]}
+  values = cards.map { |card| card[1] }
   prompt "You have: #{joinor(values)}"
 end
 
@@ -104,16 +90,16 @@ loop do
   display_player(player_cards)
 
   answer = nil
-  loop do 
-      prompt "hit or stay?"
-      answer = gets.chomp
-      
-      if answer.include?("h")
-        deal_card(player_cards)
-        display_player(player_cards)
-      end
+  loop do
+    prompt "hit or stay?"
+    answer = gets.chomp
 
-      break if answer == 'stay' || busted?(player_cards)
+    if answer.include?("h")
+      deal_card(player_cards)
+      display_player(player_cards)
+    end
+
+    break if answer == 'stay' || busted?(player_cards)
   end
 
   if busted?(player_cards)
@@ -125,7 +111,7 @@ loop do
     loop do
       total = calculate(dealer_cards)
       break if total >= 17 || busted?(dealer_cards)
-      
+
       prompt "Dealer chose hit!"
       deal_card(dealer_cards)
     end
