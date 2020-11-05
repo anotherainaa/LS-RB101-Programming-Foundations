@@ -206,4 +206,4 @@ loop do
 end
 
 
-prompt "Thanks for playing Tic Tac Toe! Good bye!"
+prompt "Thanks for playing Tic Tac Toe! Good bye!!"
