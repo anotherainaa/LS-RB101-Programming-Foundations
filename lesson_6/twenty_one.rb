@@ -8,25 +8,25 @@ def prompt(msg)
 end
 
 def initialize_deck
-  []
+  SUITS.product(CARDS).shuffle
 end
 
-def deal_card(cards)
-  cards << [SUITS.sample, CARDS.sample]
+def deal_card(cards, deck)
+  cards << deck.pop
 end
 
 def calculate(cards)
   values = cards.map { |card| card[1] }
-  sum = 0
 
-  sum += values.each do |value|
-    if value == "Ace"
-      11
-    elsif value.to_i == 0
-      10
-    else
-      value.to_i
-    end
+  sum = 0
+  values.each do |value|
+    sum += if value == "Ace"
+             11
+           elsif value.to_i == 0
+             10
+           else
+             value.to_i
+           end
   end
 
   values.select { |value| value == "Ace" }.count.times do
@@ -81,10 +81,14 @@ prompt "Welcome to BLACKJACK!"
 sleep(1)
 
 loop do
-  player_cards = initialize_deck
-  dealer_cards = initialize_deck
-  2.times { deal_card(player_cards) }
-  2.times { deal_card(dealer_cards) }
+  deck = initialize_deck
+  player_cards = []
+  dealer_cards = []
+
+  2.times do
+    player_cards = deal_card(player_cards, deck)
+    dealer_cards = deal_card(dealer_cards, deck)
+  end
 
   display_dealer(dealer_cards)
   display_player(player_cards)
@@ -95,7 +99,7 @@ loop do
     answer = gets.chomp
 
     if answer.include?("h")
-      deal_card(player_cards)
+      deal_card(player_cards, deck)
       display_player(player_cards)
     end
 
@@ -113,7 +117,7 @@ loop do
       break if total >= 17 || busted?(dealer_cards)
 
       prompt "Dealer chose hit!"
-      deal_card(dealer_cards)
+      deal_card(dealer_cards, deck)
     end
 
     if busted?(dealer_cards)
